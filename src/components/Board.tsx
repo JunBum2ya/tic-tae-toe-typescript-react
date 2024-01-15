@@ -23,9 +23,12 @@ const Board = () => {
 
   const handleClick = (i: number) => {
     const newSquares = squares.slice();
-    newSquares[i] = isNext ? 'O' : 'X';
-    setNext(isNext => !isNext);
-    setSquares(newSquares);
+    const square = newSquares[i];
+    if(!square && calucateWinner(newSquares) === null) {
+      newSquares[i] = isNext ? 'O' : 'X';
+      setNext(isNext => !isNext);
+      setSquares(newSquares);
+    }
   };
 
   const renderSquare = (i: number) => {
