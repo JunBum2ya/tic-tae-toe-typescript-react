@@ -29,7 +29,7 @@ const Board = () => {
     if(!square && calucateWinner(newSquares) === null) {
       newSquares[i] = isNext ? 'O' : 'X';
       setNext(isNext => !isNext);
-      setSquares(newSquares);
+      setSquares(squares => newSquares);
       history.push(squares);
     }
   };
