@@ -4,5 +4,11 @@
 ### Square.tsx : 버튼 컴포넌트
 ### redo, undo 구현
 
+# 배포
+## url : https://junbum2ya.github.io/tic-tae-toe-typescript-react/
+>>>
+>>>npm run deploy
+>>>
+
 ## 구현할 기능 목록
 1. css 수정
