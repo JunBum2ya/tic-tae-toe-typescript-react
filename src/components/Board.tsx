@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../css/Board.css";
 import Square from "./Square";
+import Stack from "../util/Stack";
 
 const calucateWinner = (squares: (string|null)[]): string|null => {
   const lines = [
@@ -18,8 +19,9 @@ const calucateWinner = (squares: (string|null)[]): string|null => {
 }
 
 const Board = () => {
-  const [ squares, setSquares ] = useState(Array(9).fill(null));
+  const [ squares, setSquares ] = useState(Array<string | null>(9).fill(null));
   const [ isNext, setNext ] = useState(false);
+  const [ history, setHistory ] = useState(new Stack<(string | null)[]>());
 
   const handleClick = (i: number) => {
     const newSquares = squares.slice();
@@ -28,6 +30,22 @@ const Board = () => {
       newSquares[i] = isNext ? 'O' : 'X';
       setNext(isNext => !isNext);
       setSquares(newSquares);
+      history.push(squares);
+    }
+  };
+
+  //초기화 버튼을 클릭했을 경우
+  const redo = () => {
+    setSquares(Array(9).fill(null));
+    setNext(false);
+    history.clear();
+  };
+  //이전으로 돌아가기
+  const undo = () => {
+    if(history.size() > 0) {
+      const prevSquare = history.pop()??[];
+      setNext(prev => !prev);
+      setSquares(prevSquare);
     }
   };
 
@@ -55,6 +73,14 @@ const Board = () => {
         { renderSquare(6) }
         { renderSquare(7) }
         { renderSquare(8) }
+      </div>
+      <div className="button-list">
+        <button className="redo" onClick={redo}>
+          다시 시작하기
+        </button>
+        <button className="undo" onClick={undo}>
+          되돌아가기
+        </button>
       </div>
     </div>
   );

@@ -7,3 +7,15 @@
   text-align: center;
   margin-bottom: 30px;
 }
+.button-list {
+  margin-top: 30px;
+}
+.button-list button {
+  display: block;
+  margin: 10px auto;
+  width: 200px;
+  height: 50px;
+  background-color: #f444f4;
+  color: #fff;
+  border: 1px solid;
+}
