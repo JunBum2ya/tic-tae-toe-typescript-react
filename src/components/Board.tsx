@@ -45,7 +45,7 @@ const Board = () => {
     if(history.size() > 0) {
       const prevSquare = history.pop()??[];
       setNext(prev => !prev);
-      setSquares(prevSquare);
+      setSquares(squares => prevSquare);
     }
   };
 
